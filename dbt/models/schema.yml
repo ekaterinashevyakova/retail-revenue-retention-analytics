@@ -1,0 +1,82 @@
+version: 2
+models:
+  - name: stg_invoice_lines
+    description: "One prepared invoice line, preserving all source flags."
+    columns:
+      - name: source_row
+        data_tests: [unique, not_null]
+      - name: invoice_date
+        data_tests: [not_null]
+  - name: fct_sales_lines
+    description: "Eligible sales lines across the full source period; positive quantity and price, excluding cancellations and flagged duplicates. Missing customers remain included."
+    columns:
+      - name: source_row
+        data_tests: [unique, not_null]
+      - name: sales_value_gbp
+        data_tests: [not_null]
+  - name: fct_cancellation_lines
+    description: "Eligible cancellation lines across the full source period; absolute values by cancellation date, not matched to original sales."
+    columns:
+      - name: source_row
+        data_tests: [unique, not_null]
+      - name: cancellation_value_gbp
+        data_tests: [not_null]
+  - name: int_customer_orders
+    description: "One invoice/customer combination with a known customer. Used for observed purchase behaviour, not true acquisition dates."
+    columns:
+      - name: invoice_no
+        data_tests: [not_null]
+      - name: customer_id
+        data_tests: [not_null]
+  - name: mart_monthly_metrics
+    description: "Monthly sales, cancellations, distinct orders and AOV for twelve complete months, December 2010 to November 2011."
+    columns:
+      - name: month
+        data_tests: [unique, not_null]
+      - name: sales_value_gbp
+        data_tests: [not_null]
+      - name: orders
+        data_tests: [not_null]
+  - name: mart_repeat_purchase
+    description: "Single-row customer summary: customers with at least two eligible orders divided by identifiable customers within the complete-month window."
+    columns:
+      - name: customers
+        data_tests: [not_null]
+      - name: repeat_customers
+        data_tests: [not_null]
+      - name: repeat_purchase_rate
+        data_tests: [not_null]
+  - name: mart_cohort_retention
+    description: "First-observed-purchase cohorts. Observable inactive months are zero; unobservable future months are omitted. Grain: cohort_month/activity_month."
+    columns:
+      - name: cohort_month
+        data_tests: [not_null]
+      - name: activity_month
+        data_tests: [not_null]
+      - name: cohort_size
+        data_tests: [not_null]
+      - name: retention_rate
+        data_tests: [not_null]
+  - name: mart_customer_group_sales
+    description: "Monthly sales from customers in their first observed purchase month, returning customers, and unknown customers. Grain: month/customer_group."
+    columns:
+      - name: month
+        data_tests: [not_null]
+      - name: customer_group
+        data_tests: [not_null]
+      - name: sales_value_gbp
+        data_tests: [not_null]
+  - name: mart_country_sales
+    description: "Country sales and distinct invoices during complete months. Invoice counts across groups are additive only when each invoice has one country."
+    columns:
+      - name: country
+        data_tests: [unique, not_null]
+      - name: sales_value_gbp
+        data_tests: [not_null]
+  - name: mart_stock_code_sales
+    description: "Stock-code sales, units and invoices during complete months. Stock codes may represent delivery or adjustments; not all are merchandise."
+    columns:
+      - name: stock_code
+        data_tests: [unique, not_null]
+      - name: sales_value_gbp
+        data_tests: [not_null]

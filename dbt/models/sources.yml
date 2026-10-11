@@ -1,0 +1,16 @@
+version: 2
+sources:
+  - name: retail
+    schema: retail
+    description: "Prepared UCI Online Retail invoice lines; load using sql/01_schema.sql and the documented CSV preparation workflow. Historical source; no freshness SLA."
+    tables:
+      - name: invoice_lines
+        description: "All source rows, including flagged duplicates, cancellations and records excluded from metrics."
+        columns:
+          - name: source_row
+            description: "Original worksheet row including header offset."
+            data_tests: [unique, not_null]
+          - name: invoice_no
+            data_tests: [not_null]
+          - name: invoice_date
+            data_tests: [not_null]
