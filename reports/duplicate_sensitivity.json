@@ -1,0 +1,20 @@
+{
+  "exclude_flagged_duplicates": {
+    "sales_value_gbp": "10004320.474",
+    "orders": 19141,
+    "average_order_value_gbp": "522.6644623582884906744684186",
+    "identifiable_customers": 4297,
+    "repeat_customers": 2759,
+    "repeat_purchase_rate": 0.6420758668838724
+  },
+  "include_flagged_duplicates": {
+    "sales_value_gbp": "10027891.864",
+    "orders": 19141,
+    "average_order_value_gbp": "523.8959230970168747714330495",
+    "identifiable_customers": 4297,
+    "repeat_customers": 2759,
+    "repeat_purchase_rate": 0.6420758668838724
+  },
+  "sales_difference_gbp": "23571.390",
+  "sales_difference_percent_of_base": "0.2356121044028842053265875817"
+}
