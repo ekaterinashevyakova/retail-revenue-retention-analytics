@@ -2,7 +2,7 @@
 
 ## Scope and status
 
-This analysis covers the twelve complete months from 1 December 2010 to 30 November 2011 using UCI Online Retail. Results were computed in Python from the prepared dataset. The accompanying PostgreSQL queries have not yet been executed in PostgreSQL. Power BI and dbt implementation remain planned.
+This analysis covers the twelve complete months from 1 December 2010 to 30 November 2011 using UCI Online Retail. Results were computed in Python from the prepared dataset. All six accompanying SQL queries were executed using PostgreSQL 18.3 via PGlite 0.5.8 (WebAssembly) and reconciled against Python outputs. Verification on a native PostgreSQL server remains pending. Power BI and dbt implementation remain planned.
 
 ## Results
 
@@ -30,6 +30,8 @@ These findings support prioritising further analysis of repeat purchasing and UK
 ## Validation and limitations
 
 Sales totals reconcile exactly across monthly, country, stock-code and customer-group summaries using decimal arithmetic. Orders reconcile between monthly and overall summaries. Eligible sales invoices have one country in the analysed window. Cohort rates are between zero and one, and month-zero retention is 100%.
+
+SQL validation loaded all 541,909 prepared source rows and compared 12 monthly rows, one repeat-purchase summary, 78 cohort rows, 35 customer-group rows, 38 country rows and 3,919 stock-code rows. Amounts, counts and units match exactly. Average order value uses a tolerance of 1e-16 GBP; retention and repeat purchase rates use 1e-15. See `reports/sql_validation.json` for the engine version and comparison results.
 
 All source rows are retained in preparation. Exact duplicates after the first occurrence are flagged and excluded from analytical views as an assumption. Including these flagged duplicates increases sales value from GBP 10,004,320.47 to GBP 10,027,891.86, a difference of GBP 23,571.39 (0.24% of the base value). Average order value increases from GBP 522.66 to GBP 523.90. Order counts, identifiable customer counts and the repeat purchase rate are unchanged. Non-positive prices and negative quantities without a cancellation invoice prefix are retained for inspection and excluded from eligible sales and cancellation views.
 
