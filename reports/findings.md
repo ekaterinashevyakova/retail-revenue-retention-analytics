@@ -31,7 +31,7 @@ These findings support prioritising further analysis of repeat purchasing and UK
 
 Sales totals reconcile exactly across monthly, country, stock-code and customer-group summaries using decimal arithmetic. Orders reconcile between monthly and overall summaries. Eligible sales invoices have one country in the analysed window. Cohort rates are between zero and one, and month-zero retention is 100%.
 
-All source rows are retained in preparation. Exact duplicates after the first occurrence are flagged and excluded from analytical views as an assumption. A sensitivity comparison including duplicates remains to be completed. Non-positive prices and negative quantities without a cancellation invoice prefix are retained for inspection and excluded from eligible sales and cancellation views.
+All source rows are retained in preparation. Exact duplicates after the first occurrence are flagged and excluded from analytical views as an assumption. Including these flagged duplicates increases sales value from GBP 10,004,320.47 to GBP 10,027,891.86, a difference of GBP 23,571.39 (0.24% of the base value). Average order value increases from GBP 522.66 to GBP 523.90. Order counts, identifiable customer counts and the repeat purchase rate are unchanged. Non-positive prices and negative quantities without a cancellation invoice prefix are retained for inspection and excluded from eligible sales and cancellation views.
 
 Missing customer IDs are excluded from customer metrics but retained in sales reporting. Later cohorts have shorter follow-up. Unobserved future months are omitted, while observable months without repeat purchasing are recorded as zero. Incomplete December 2011 is excluded from these complete-month results. Some stock codes represent delivery or adjustment entries and require review before merchandise-level recommendations. Many customers are wholesalers, so the average order value should not be presented as a typical consumer basket.
 
@@ -44,5 +44,11 @@ python src/analyse_data.py data/processed/retail_lines.csv.gz
 ```
 
 The script exports monthly metrics, cohort retention, customer-group sales, country sales, stock-code sales and a JSON summary into `reports/`. Definitions and preparation rules are documented in `docs/metric_definitions.md`. PostgreSQL queries are in `sql/02_analysis.sql`.
+
+Generate figures and the duplicate sensitivity summary with:
+
+```bash
+python src/build_visuals.py data/processed/retail_lines.csv.gz
+```
 
 Source: Chen, D. (2015). Online Retail [Dataset]. UCI Machine Learning Repository. https://doi.org/10.24432/C5BW33. CC BY 4.0.
