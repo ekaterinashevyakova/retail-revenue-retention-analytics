@@ -1,0 +1,346 @@
+{
+  "dbt_parse": "passed",
+  "dbt_core_version": "1.12.5",
+  "dbt_postgres_version": "1.11.0",
+  "execution_environment": "PostgreSQL 18.3 via PGlite 0.5.8 (WebAssembly)",
+  "source_rows_loaded": 541909,
+  "models_executed": [
+    "stg_invoice_lines",
+    "fct_cancellation_lines",
+    "fct_sales_lines",
+    "int_customer_orders",
+    "mart_country_sales",
+    "mart_stock_code_sales",
+    "mart_monthly_metrics",
+    "mart_repeat_purchase",
+    "mart_customer_group_sales",
+    "mart_cohort_retention"
+  ],
+  "sql_assertions_passed": 48,
+  "checks": [
+    {
+      "name": "cohort_rates_valid",
+      "execution": "Singular test SQL executed directly",
+      "failing_rows": 0,
+      "status": "passed"
+    },
+    {
+      "name": "monthly_window_complete",
+      "execution": "Singular test SQL executed directly",
+      "failing_rows": 0,
+      "status": "passed"
+    },
+    {
+      "name": "repeat_purchase_valid",
+      "execution": "Singular test SQL executed directly",
+      "failing_rows": 0,
+      "status": "passed"
+    },
+    {
+      "name": "customer_orders_unique",
+      "execution": "Singular test SQL executed directly",
+      "failing_rows": 0,
+      "status": "passed"
+    },
+    {
+      "name": "eligibility_flags_consistent",
+      "execution": "Singular test SQL executed directly",
+      "failing_rows": 0,
+      "status": "passed"
+    },
+    {
+      "name": "cohort_grain_unique",
+      "execution": "Singular test SQL executed directly",
+      "failing_rows": 0,
+      "status": "passed"
+    },
+    {
+      "name": "orders_reconcile",
+      "execution": "Singular test SQL executed directly",
+      "failing_rows": 0,
+      "status": "passed"
+    },
+    {
+      "name": "invoice_country_consistent",
+      "execution": "Singular test SQL executed directly",
+      "failing_rows": 0,
+      "status": "passed"
+    },
+    {
+      "name": "sales_totals_reconcile",
+      "execution": "Singular test SQL executed directly",
+      "failing_rows": 0,
+      "status": "passed"
+    },
+    {
+      "name": "monthly_aov_valid",
+      "execution": "Singular test SQL executed directly",
+      "failing_rows": 0,
+      "status": "passed"
+    },
+    {
+      "name": "customer_group_grain_unique",
+      "execution": "Singular test SQL executed directly",
+      "failing_rows": 0,
+      "status": "passed"
+    },
+    {
+      "name": "customer_groups_valid",
+      "execution": "Singular test SQL executed directly",
+      "failing_rows": 0,
+      "status": "passed"
+    },
+    {
+      "name": "source_row_count_preserved",
+      "execution": "Singular test SQL executed directly",
+      "failing_rows": 0,
+      "status": "passed"
+    },
+    {
+      "name": "unique_stg_invoice_lines_source_row",
+      "execution": "SQL equivalent of dbt generic unique",
+      "failing_rows": 0,
+      "status": "passed"
+    },
+    {
+      "name": "not_null_stg_invoice_lines_source_row",
+      "execution": "SQL equivalent of dbt generic not_null",
+      "failing_rows": 0,
+      "status": "passed"
+    },
+    {
+      "name": "not_null_stg_invoice_lines_invoice_date",
+      "execution": "SQL equivalent of dbt generic not_null",
+      "failing_rows": 0,
+      "status": "passed"
+    },
+    {
+      "name": "unique_fct_sales_lines_source_row",
+      "execution": "SQL equivalent of dbt generic unique",
+      "failing_rows": 0,
+      "status": "passed"
+    },
+    {
+      "name": "not_null_fct_sales_lines_source_row",
+      "execution": "SQL equivalent of dbt generic not_null",
+      "failing_rows": 0,
+      "status": "passed"
+    },
+    {
+      "name": "not_null_fct_sales_lines_sales_value_gbp",
+      "execution": "SQL equivalent of dbt generic not_null",
+      "failing_rows": 0,
+      "status": "passed"
+    },
+    {
+      "name": "unique_fct_cancellation_lines_source_row",
+      "execution": "SQL equivalent of dbt generic unique",
+      "failing_rows": 0,
+      "status": "passed"
+    },
+    {
+      "name": "not_null_fct_cancellation_lines_source_row",
+      "execution": "SQL equivalent of dbt generic not_null",
+      "failing_rows": 0,
+      "status": "passed"
+    },
+    {
+      "name": "not_null_fct_cancellation_lines_cancellation_value_gbp",
+      "execution": "SQL equivalent of dbt generic not_null",
+      "failing_rows": 0,
+      "status": "passed"
+    },
+    {
+      "name": "not_null_int_customer_orders_invoice_no",
+      "execution": "SQL equivalent of dbt generic not_null",
+      "failing_rows": 0,
+      "status": "passed"
+    },
+    {
+      "name": "not_null_int_customer_orders_customer_id",
+      "execution": "SQL equivalent of dbt generic not_null",
+      "failing_rows": 0,
+      "status": "passed"
+    },
+    {
+      "name": "unique_mart_monthly_metrics_month",
+      "execution": "SQL equivalent of dbt generic unique",
+      "failing_rows": 0,
+      "status": "passed"
+    },
+    {
+      "name": "not_null_mart_monthly_metrics_month",
+      "execution": "SQL equivalent of dbt generic not_null",
+      "failing_rows": 0,
+      "status": "passed"
+    },
+    {
+      "name": "not_null_mart_monthly_metrics_sales_value_gbp",
+      "execution": "SQL equivalent of dbt generic not_null",
+      "failing_rows": 0,
+      "status": "passed"
+    },
+    {
+      "name": "not_null_mart_monthly_metrics_orders",
+      "execution": "SQL equivalent of dbt generic not_null",
+      "failing_rows": 0,
+      "status": "passed"
+    },
+    {
+      "name": "not_null_mart_repeat_purchase_customers",
+      "execution": "SQL equivalent of dbt generic not_null",
+      "failing_rows": 0,
+      "status": "passed"
+    },
+    {
+      "name": "not_null_mart_repeat_purchase_repeat_customers",
+      "execution": "SQL equivalent of dbt generic not_null",
+      "failing_rows": 0,
+      "status": "passed"
+    },
+    {
+      "name": "not_null_mart_repeat_purchase_repeat_purchase_rate",
+      "execution": "SQL equivalent of dbt generic not_null",
+      "failing_rows": 0,
+      "status": "passed"
+    },
+    {
+      "name": "not_null_mart_cohort_retention_cohort_month",
+      "execution": "SQL equivalent of dbt generic not_null",
+      "failing_rows": 0,
+      "status": "passed"
+    },
+    {
+      "name": "not_null_mart_cohort_retention_activity_month",
+      "execution": "SQL equivalent of dbt generic not_null",
+      "failing_rows": 0,
+      "status": "passed"
+    },
+    {
+      "name": "not_null_mart_cohort_retention_cohort_size",
+      "execution": "SQL equivalent of dbt generic not_null",
+      "failing_rows": 0,
+      "status": "passed"
+    },
+    {
+      "name": "not_null_mart_cohort_retention_retention_rate",
+      "execution": "SQL equivalent of dbt generic not_null",
+      "failing_rows": 0,
+      "status": "passed"
+    },
+    {
+      "name": "not_null_mart_customer_group_sales_month",
+      "execution": "SQL equivalent of dbt generic not_null",
+      "failing_rows": 0,
+      "status": "passed"
+    },
+    {
+      "name": "not_null_mart_customer_group_sales_customer_group",
+      "execution": "SQL equivalent of dbt generic not_null",
+      "failing_rows": 0,
+      "status": "passed"
+    },
+    {
+      "name": "not_null_mart_customer_group_sales_sales_value_gbp",
+      "execution": "SQL equivalent of dbt generic not_null",
+      "failing_rows": 0,
+      "status": "passed"
+    },
+    {
+      "name": "unique_mart_country_sales_country",
+      "execution": "SQL equivalent of dbt generic unique",
+      "failing_rows": 0,
+      "status": "passed"
+    },
+    {
+      "name": "not_null_mart_country_sales_country",
+      "execution": "SQL equivalent of dbt generic not_null",
+      "failing_rows": 0,
+      "status": "passed"
+    },
+    {
+      "name": "not_null_mart_country_sales_sales_value_gbp",
+      "execution": "SQL equivalent of dbt generic not_null",
+      "failing_rows": 0,
+      "status": "passed"
+    },
+    {
+      "name": "unique_mart_stock_code_sales_stock_code",
+      "execution": "SQL equivalent of dbt generic unique",
+      "failing_rows": 0,
+      "status": "passed"
+    },
+    {
+      "name": "not_null_mart_stock_code_sales_stock_code",
+      "execution": "SQL equivalent of dbt generic not_null",
+      "failing_rows": 0,
+      "status": "passed"
+    },
+    {
+      "name": "not_null_mart_stock_code_sales_sales_value_gbp",
+      "execution": "SQL equivalent of dbt generic not_null",
+      "failing_rows": 0,
+      "status": "passed"
+    },
+    {
+      "name": "source_unique_retail_invoice_lines_source_row",
+      "execution": "SQL equivalent of dbt generic unique",
+      "failing_rows": 0,
+      "status": "passed"
+    },
+    {
+      "name": "source_not_null_retail_invoice_lines_source_row",
+      "execution": "SQL equivalent of dbt generic not_null",
+      "failing_rows": 0,
+      "status": "passed"
+    },
+    {
+      "name": "source_not_null_retail_invoice_lines_invoice_no",
+      "execution": "SQL equivalent of dbt generic not_null",
+      "failing_rows": 0,
+      "status": "passed"
+    },
+    {
+      "name": "source_not_null_retail_invoice_lines_invoice_date",
+      "execution": "SQL equivalent of dbt generic not_null",
+      "failing_rows": 0,
+      "status": "passed"
+    }
+  ],
+  "dbt_build_verified": false,
+  "limitation": "dbt build could not connect: this environment prohibits binding local sockets. Model SQL and equivalent generic assertions were executed directly in PGlite, not through dbt run or dbt test.",
+  "native_postgresql_verified": false,
+  "mart_python_comparison": [
+    {
+      "query": "monthly_metrics",
+      "rows_compared": 12,
+      "status": "passed"
+    },
+    {
+      "query": "repeat_purchase",
+      "rows_compared": 1,
+      "status": "passed"
+    },
+    {
+      "query": "cohort_retention",
+      "rows_compared": 78,
+      "status": "passed"
+    },
+    {
+      "query": "customer_group_sales",
+      "rows_compared": 35,
+      "status": "passed"
+    },
+    {
+      "query": "country_sales",
+      "rows_compared": 38,
+      "status": "passed"
+    },
+    {
+      "query": "stock_code_sales",
+      "rows_compared": 3919,
+      "status": "passed"
+    }
+  ],
+  "comparison_rules": "Amounts, counts and units match exactly; AOV tolerance 1e-16 GBP; retention and repeat purchase rate tolerance 1e-15."
+}
