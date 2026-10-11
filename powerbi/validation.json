@@ -1,0 +1,57 @@
+{
+  "window": "2010-12-01 inclusive to 2011-12-01 exclusive",
+  "sales_value_gbp": "10004320.474",
+  "cancellation_value_gbp": "688890.46",
+  "orders": 19141,
+  "average_order_value_gbp": "522.6644623582884906744684186",
+  "identifiable_customers": 4297,
+  "repeat_customers": 2759,
+  "repeat_purchase_rate": 0.6420758668838724,
+  "power_query_executed": false,
+  "dax_executed": false,
+  "powerbi_report_created": false,
+  "validation": "Exported table metrics reconciled in Python. Power Query, DAX and report rendering require verification in Power BI.",
+  "export_validation_checks": [
+    "Baseline summary equality",
+    "Monthly sales equality",
+    "Country sales equality",
+    "Monthly customer-group sales equality",
+    "Unique dimension keys",
+    "Fact-to-dimension referential integrity",
+    "Fixed-decimal monetary precision"
+  ],
+  "power_query_syntax": [
+    {
+      "file": "Cohorts.pq",
+      "status": "syntax passed"
+    },
+    {
+      "file": "DataFolder.pq",
+      "status": "syntax passed"
+    },
+    {
+      "file": "DimCountry.pq",
+      "status": "syntax passed"
+    },
+    {
+      "file": "DimMonth.pq",
+      "status": "syntax passed"
+    },
+    {
+      "file": "FactCancellations.pq",
+      "status": "syntax passed"
+    },
+    {
+      "file": "FactOrders.pq",
+      "status": "syntax passed"
+    },
+    {
+      "file": "LoadRetailTable.pq",
+      "status": "syntax passed"
+    },
+    {
+      "file": "StockSales.pq",
+      "status": "syntax passed"
+    }
+  ]
+}

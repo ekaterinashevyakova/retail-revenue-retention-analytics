@@ -1,0 +1,13 @@
+{
+  "name": "Retail Analytics",
+  "dataColors": [
+    "#16324F",
+    "#14A7A0",
+    "#6B8EAE",
+    "#C7D4E2",
+    "#E3A857"
+  ],
+  "background": "#F5F7FA",
+  "foreground": "#16324F",
+  "tableAccent": "#14A7A0"
+}

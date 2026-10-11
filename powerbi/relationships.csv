@@ -1,0 +1,5 @@
+one_table,one_column,many_table,many_column,cardinality,filter_direction
+DimMonth,month,FactOrders,month,one-to-many,single
+DimMonth,month,FactCancellations,month,one-to-many,single
+DimCountry,country,FactOrders,country,one-to-many,single
+DimCountry,country,FactCancellations,country,one-to-many,single

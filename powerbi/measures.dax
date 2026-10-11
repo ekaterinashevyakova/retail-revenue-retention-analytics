@@ -1,0 +1,39 @@
+// Authoring definitions: create each measure separately in Power BI.
+// Power BI execution has not yet been verified.
+Sales Value GBP = SUM(FactOrders[sales_value_gbp])
+
+Orders = DISTINCTCOUNT(FactOrders[invoice_no])
+
+Average Order Value GBP = DIVIDE([Sales Value GBP], [Orders])
+
+Cancellation Value GBP = SUM(FactCancellations[cancellation_value_gbp])
+
+Known Customers =
+COUNTROWS(
+    FILTER(VALUES(FactOrders[customer_id]),
+        NOT ISBLANK(FactOrders[customer_id]) && FactOrders[customer_id] <> "")
+)
+
+Repeat Customers =
+COUNTROWS(
+    FILTER(
+        FILTER(VALUES(FactOrders[customer_id]),
+            NOT ISBLANK(FactOrders[customer_id]) && FactOrders[customer_id] <> ""),
+        CALCULATE(DISTINCTCOUNT(FactOrders[invoice_no])) >= 2
+    )
+)
+
+Repeat Purchase Rate = DIVIDE([Repeat Customers], [Known Customers])
+
+Cohort Size =
+IF(HASONEVALUE(Cohorts[cohort_month]), MAX(Cohorts[cohort_size]), BLANK())
+
+Cohort Retention =
+IF(
+    HASONEVALUE(Cohorts[cohort_month]) &&
+    HASONEVALUE(Cohorts[months_since_first_observed_purchase]),
+    DIVIDE(SUM(Cohorts[active_customers]), MAX(Cohorts[cohort_size])),
+    BLANK()
+)
+
+Stock Code Sales GBP = SUM(StockSales[sales_value_gbp])
