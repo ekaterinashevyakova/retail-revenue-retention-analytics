@@ -2,7 +2,7 @@
 
 An e-commerce analytics project examining sales performance, repeat purchasing and customer retention using UCI Online Retail.
 
-**Status:** In progress. Python data preparation, complete-month analysis, visualisations and duplicate sensitivity checks are implemented. PostgreSQL queries are written but have not yet been executed in PostgreSQL. dbt and Power BI development remain planned.
+**Status:** In progress. Python data preparation, complete-month analysis, visualisations and duplicate sensitivity checks are implemented. All six SQL queries have been executed using PGlite, a WebAssembly build of PostgreSQL, and reconciled against Python outputs. Verification on a native PostgreSQL server remains pending. dbt and Power BI development remain planned.
 
 ## Business question
 
@@ -45,8 +45,9 @@ Customers are classified by their first observed purchase month. Sales without C
 - [PostgreSQL schema](sql/01_schema.sql) and [six analytical queries](sql/02_analysis.sql).
 - [Metric definitions and loading instructions](docs/metric_definitions.md).
 - [Findings and limitations](reports/findings.md).
+- [SQL validation results](reports/sql_validation.json): full-data execution in PostgreSQL 18.3 via PGlite 0.5.8, with all six outputs compared against Python.
 
-Python sales totals reconcile across monthly, country, stock-code and customer-group summaries. Cohort rates and reporting-period boundaries were checked. These checks do not establish PostgreSQL execution.
+Python sales totals reconcile across monthly, country, stock-code and customer-group summaries. Cohort rates and reporting-period boundaries were checked. SQL validation loaded all 541,909 prepared rows. Sales amounts, cancellation amounts, counts and units match Python exactly; average order values and rates match within the tolerances recorded in the validation report. Execution used PGlite rather than a native PostgreSQL server.
 
 ## Reproduce the Python analysis
 
@@ -68,7 +69,7 @@ Non-positive prices and negative quantities without a cancellation prefix are re
 
 ## Next development steps
 
-- Execute the schema, data loading and analytical queries in PostgreSQL and reconcile results against Python outputs.
+- Repeat the validated SQL workflow on a native PostgreSQL server.
 - Develop dbt transformations, documentation and data quality tests.
 - Build a Power BI dashboard.
 - Investigate customer segments and review merchandise versus non-merchandise stock codes.
