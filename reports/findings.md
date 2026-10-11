@@ -2,7 +2,7 @@
 
 ## Scope and status
 
-This analysis covers the twelve complete months from 1 December 2010 to 30 November 2011 using UCI Online Retail. Results were computed in Python from the prepared dataset. All six accompanying SQL queries were executed using PostgreSQL 18.3 via PGlite 0.5.8 (WebAssembly) and reconciled against Python outputs. Verification on a native PostgreSQL server remains pending. Power BI and dbt implementation remain planned.
+This analysis covers the twelve complete months from 1 December 2010 to 30 November 2011 using UCI Online Retail. Results were computed in Python from the prepared dataset. All six accompanying SQL queries were executed using PostgreSQL 18.3 via PGlite 0.5.8 (WebAssembly) and reconciled against Python outputs. Verification on a native PostgreSQL server remains pending. The dbt project is authored and parsed; model SQL and equivalent quality assertions passed direct PGlite checks. A full dbt build remains unverified. Power BI implementation remains planned.
 
 ## Results
 
@@ -36,6 +36,8 @@ SQL validation loaded all 541,909 prepared source rows and compared 12 monthly r
 All source rows are retained in preparation. Exact duplicates after the first occurrence are flagged and excluded from analytical views as an assumption. Including these flagged duplicates increases sales value from GBP 10,004,320.47 to GBP 10,027,891.86, a difference of GBP 23,571.39 (0.24% of the base value). Average order value increases from GBP 522.66 to GBP 523.90. Order counts, identifiable customer counts and the repeat purchase rate are unchanged. Non-positive prices and negative quantities without a cancellation invoice prefix are retained for inspection and excluded from eligible sales and cancellation views.
 
 Missing customer IDs are excluded from customer metrics but retained in sales reporting. Later cohorts have shorter follow-up. Unobserved future months are omitted, while observable months without repeat purchasing are recorded as zero. Incomplete December 2011 is excluded from these complete-month results. Some stock codes represent delivery or adjustment entries and require review before merchandise-level recommendations. Many customers are wholesalers, so the average order value should not be presented as a typical consumer basket.
+
+The dbt project defines 10 models and 48 tests. `dbt parse` passed. Direct PGlite execution of model SQL and equivalent assertions returned no failing rows, and all six marts matched the reconciled Python outputs under the same comparison tolerances. This was not a successful `dbt build`: local socket restrictions prevented the dbt adapter from connecting. See `reports/dbt_validation.json` and `dbt/README.md`.
 
 ## Reproduction
 
