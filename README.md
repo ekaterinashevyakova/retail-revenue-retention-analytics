@@ -2,7 +2,7 @@
 
 An e-commerce analytics project examining sales performance, repeat purchasing and customer retention using UCI Online Retail.
 
-**Status:** In progress. Python data preparation, complete-month analysis, visualisations and duplicate sensitivity checks are implemented. All six SQL queries have been executed using PGlite, a WebAssembly build of PostgreSQL, and reconciled against Python outputs. Verification on a native PostgreSQL server remains pending. A dbt project is authored and parsed; its model SQL and equivalent quality assertions passed direct PGlite checks. Full dbt build verification remains pending. Power BI development remains planned.
+**Status:** In progress. Python data preparation, complete-month analysis, visualisations and duplicate sensitivity checks are implemented. All six SQL queries have been executed using PGlite, a WebAssembly build of PostgreSQL, and reconciled against Python outputs. Verification on a native PostgreSQL server remains pending. A dbt project is authored and parsed; its model SQL and equivalent quality assertions passed direct PGlite checks. Full dbt build verification remains pending. A Power BI authoring package is prepared; execution and report validation in Power BI remain pending.
 
 ## Business question
 
@@ -46,6 +46,7 @@ Customers are classified by their first observed purchase month. Sales without C
 - [Metric definitions and loading instructions](docs/metric_definitions.md).
 - [dbt project and run guide](dbt/README.md): 10 models, source/model documentation, 48 data tests and credential-free profile configuration.
 - [dbt validation evidence](reports/dbt_validation.json): parse status, direct SQL checks and comparison of all six marts against Python.
+- [Power BI authoring package](powerbi/README.md): reconciled CSV inputs, Power Query definitions, DAX measures, relationships, theme and a clearly labelled design preview. Power BI execution remains pending.
 - [Findings and limitations](reports/findings.md).
 - [SQL validation results](reports/sql_validation.json): full-data execution in PostgreSQL 18.3 via PGlite 0.5.8, with all six outputs compared against Python.
 
@@ -73,7 +74,7 @@ Non-positive prices and negative quantities without a cancellation prefix are re
 
 - Repeat the validated SQL workflow on a native PostgreSQL server.
 - Run the authored dbt project with `dbt build` and generate its documentation on a native PostgreSQL server.
-- Build a Power BI dashboard.
+- Import the prepared Power BI package, execute its Power Query/DAX definitions and validate the report against the recorded acceptance checks.
 - Investigate customer segments and review merchandise versus non-merchandise stock codes.
 
 ## Data source
