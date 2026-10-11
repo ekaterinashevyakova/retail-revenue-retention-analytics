@@ -2,7 +2,7 @@
 
 ## Scope and status
 
-This analysis covers the twelve complete months from 1 December 2010 to 30 November 2011 using UCI Online Retail. Results were computed in Python from the prepared dataset. All six accompanying SQL queries were executed using PostgreSQL 18.3 via PGlite 0.5.8 (WebAssembly) and reconciled against Python outputs. Verification on a native PostgreSQL server remains pending. The dbt project is authored and parsed; model SQL and equivalent quality assertions passed direct PGlite checks. A full dbt build remains unverified. Power BI implementation remains planned.
+This analysis covers the twelve complete months from 1 December 2010 to 30 November 2011 using UCI Online Retail. Results were computed in Python from the prepared dataset. All six accompanying SQL queries were executed using PostgreSQL 18.3 via PGlite 0.5.8 (WebAssembly) and reconciled against Python outputs. Verification on a native PostgreSQL server remains pending. The dbt project is authored and parsed; model SQL and equivalent quality assertions passed direct PGlite checks. A full dbt build remains unverified. A Power BI authoring package is prepared, with reconciled input tables and syntax-checked Power Query definitions. Power BI execution and completed report verification remain pending.
 
 ## Results
 
