@@ -1,0 +1,57 @@
+{
+  "execution_environment": "PGlite (PostgreSQL compiled to WebAssembly), not a native PostgreSQL server",
+  "engine": {
+    "version": [
+      {
+        "version": "PostgreSQL 18.3 (PGlite 0.5.8) on wasm32-unknown-emscripten, compiled by emcc (Emscripten gcc/clang-like replacement + linker emulating GNU ld) 3.1.74 (1092ec30a3fb1d46b1782ff1b4db5094d3d06ae5), 32-bit"
+      }
+    ],
+    "loaded": [
+      {
+        "rows": "541909",
+        "unique_rows": "541909"
+      }
+    ]
+  },
+  "source_rows_loaded": 541909,
+  "sql_files": [
+    "sql/01_schema.sql",
+    "sql/02_analysis.sql"
+  ],
+  "comparison": "All six SQL outputs compared with previously reconciled Python outputs",
+  "numeric_rules": "Sales, cancellation amounts, counts and units match exactly. AOV tolerance 1e-16 GBP; retention and repeat purchase rate tolerance 1e-15.",
+  "checks": [
+    {
+      "query": "monthly_metrics",
+      "rows_compared": 12,
+      "status": "passed"
+    },
+    {
+      "query": "repeat_purchase",
+      "rows_compared": 1,
+      "status": "passed"
+    },
+    {
+      "query": "cohort_retention",
+      "rows_compared": 78,
+      "status": "passed"
+    },
+    {
+      "query": "customer_group_sales",
+      "rows_compared": 35,
+      "status": "passed"
+    },
+    {
+      "query": "country_sales",
+      "rows_compared": 38,
+      "status": "passed"
+    },
+    {
+      "query": "stock_code_sales",
+      "rows_compared": 3919,
+      "status": "passed"
+    }
+  ],
+  "native_postgresql_verified": false,
+  "status": "passed"
+}
