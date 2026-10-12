@@ -2,7 +2,7 @@
 
 ## Status
 
-Ten models and 48 data tests are defined. `dbt parse` passed with dbt Core 1.12.5 and dbt-postgres 1.11.0. Model SQL and SQL equivalents of the defined assertions were executed directly in PostgreSQL 18.3 via PGlite 0.5.8, using all 541,909 prepared rows. This is not a verified `dbt build`: the validation environment prohibits binding local sockets. A full build on a native PostgreSQL server remains pending.
+Ten models and 48 data tests are defined. `dbt parse` passed with dbt Core 1.12.5 and dbt-postgres 1.11.0. Model SQL and SQL equivalents of the defined assertions were executed directly in PostgreSQL 18.3 via PGlite 0.5.8, using all 541,909 prepared rows. These were independent PGlite checks, not a dbt build. On 2026-10-12, the full `dbt build` succeeded against native PostgreSQL 18.6 on Apple Silicon: 10 view models and 48 tests passed (`PASS=58 WARN=0 ERROR=0 SKIP=0`) in 9.00 seconds. dbt documentation was also generated successfully.
 
 ## Model grains
 
@@ -56,4 +56,4 @@ First observed purchase is not actual acquisition. Observable inactive cohort mo
 
 ## Evidence
 
-See `reports/dbt_validation.json` in the repository root for parse status, directly executed model SQL, assertion results, engine versions and the outstanding full-build limitation. SQL validation uses exact comparisons for amounts and counts; rates and average order values use explicitly recorded tolerances.
+See [`dbt_validation.json`](../reports/dbt_validation.json) for independent PGlite validation and [`dbt_native_build_2026-10-12.log`](../reports/dbt_native_build_2026-10-12.log) for the successful native PostgreSQL 18.6 build. SQL validation uses exact comparisons for amounts and counts; rates and average order values use explicitly recorded tolerances.
