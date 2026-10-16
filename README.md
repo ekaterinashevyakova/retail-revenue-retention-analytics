@@ -1,11 +1,21 @@
 # Retail Revenue & Retention Analytics
 
-**An end-to-end e-commerce analytics case study | Python · PostgreSQL · SQL · dbt · Pandas · Matplotlib**
+**An end-to-end e-commerce analytics case study | Python · PostgreSQL · SQL · dbt · Pandas · Matplotlib · Power BI**
 
 Analysis of sales performance, repeat purchasing, customer retention, customer segments, geographic concentration and product contributions using the historical [UCI Online Retail dataset](https://archive.ics.uci.edu/dataset/352/online%2Bretail).
 
 **Reporting period:** December 2010–November 2011 (12 complete months)
-**Status:** Python/SQL analytics, native PostgreSQL dbt build, executive dashboard and business report completed. **Power BI authoring package prepared; interactive report not yet executed or validated.**
+**Status:** Python/SQL analytics, native PostgreSQL dbt build, executive dashboard and business report completed. **Interactive Power BI report built, validated and publicly published on 16 October 2026.**
+
+## Interactive Power BI dashboard
+
+**[Open the live dashboard — no sign-in required](https://app.powerbi.com/view?r=eyJrIjoiNmZlODc0YmEtOTZkNi00YjliLThlOGQtYjQxNjUyNjg5MTVhIiwidCI6ImY2Yjg5MjUzLWNmZjEtNGEyYS05YmM5LWEzZjI3ZWU5MjNiMSIsImMiOjh9)**
+
+Three pages: **Sales Overview**, **Retention**, and **Stock Code Contribution**. Month and country slicers update overview KPIs; retention and stock-code pages retain the fixed observation window.
+
+[![Published Power BI Sales Overview](assets/powerbi_sales_overview.png)](https://app.powerbi.com/view?r=eyJrIjoiNmZlODc0YmEtOTZkNi00YjliLThlOGQtYjQxNjUyNjg5MTVhIiwidCI6ImY2Yjg5MjUzLWNmZjEtNGEyYS05YmM5LWEzZjI3ZWU5MjNiMSIsImMiOjh9)
+
+*Genuine screenshot of the published Power BI report. The static Python dashboard below remains a separate deliverable.*
 
 ![Executive dashboard — retail revenue and retention analytics](assets/executive_dashboard.png)
 
@@ -73,7 +83,7 @@ dbt staging -> intermediate -> analytical marts
              +--> SQL business metrics and validation
              +--> Python/Pandas visualisations and static dashboard
              +--> Business Insights Report
-             +--> Power BI input tables and authoring package (not yet run in Power BI)
+             +--> Power BI semantic model and validated interactive report
 ```
 
 The prepared dataset preserves **541,909 source rows** and flags eligibility, cancellations, duplicates and missing identifiers. The primary analytical window omits incomplete December 2011. The eligible-sale flag applies to **524,878 prepared rows** across the source period; the dashboard totals cover the 12 complete reporting months.
@@ -85,7 +95,7 @@ The prepared dataset preserves **541,909 source rows** and flags eligibility, ca
 - **[dbt project](dbt/README.md)** — 10 analytical models (staging, facts, intermediate models, and marts) and 48 data-quality tests.
 - **[Python analysis](src/analyse_data.py)** and **[visualisation pipeline](src/build_visuals.py)** — reconciled summaries, charts and duplicate sensitivity checks.
 - **[Executive dashboard script](src/create_executive_dashboard.py)** — generates the static executive overview from locally exported analytics tables.
-- **[Power BI authoring package](powerbi/README.md)** — CSV tables, Power Query scripts, DAX measure definitions, relationships, theme and design preview. **Not a completed Power BI report.**
+- **[Power BI authoring package](powerbi/README.md)** — CSV tables, Power Query scripts, DAX measure definitions, relationships, theme and design preview. The completed interactive report is linked above; the repository retains reproduction materials.
 
 ## Validation and reproducibility
 
@@ -116,11 +126,15 @@ dbt docs generate --project-dir dbt
 
 Dashboard and additional portfolio charts depend on the local CSV exports produced from the project's PostgreSQL marts; the raw workbook and local database are **not** committed to GitHub. See the relevant scripts in [`src/`](src/) for their expected local inputs.
 
-## Power BI: prepared, not yet validated
+## Power BI: built, validated and published
 
-The [`powerbi/`](powerbi/) directory contains six prepared CSV tables, Power Query `.pq` definitions, ten DAX measure definitions, relationship guidance, a theme and a Python-rendered design preview. **All eight Power Query files passed syntax checks, but Power Query and DAX have not yet been executed in Power BI, and no `.pbix`/`.pbip` report has been completed.** See [Power BI setup and acceptance checks](powerbi/README.md) and [validation status](powerbi/validation.json).
+The [live report](https://app.powerbi.com/view?r=eyJrIjoiNmZlODc0YmEtOTZkNi00YjliLThlOGQtYjQxNjUyNjg5MTVhIiwidCI6ImY2Yjg5MjUzLWNmZjEtNGEyYS05YmM5LWEzZjI3ZWU5MjNiMSIsImMiOjh9) was authored in Power BI Service using six prepared tables, Power Query transformations, ten DAX measures, four active single-direction relationships and the project theme. No PBIX/PBIP export is claimed.
 
-This status is deliberately separate from the **completed static Python dashboard** above.
+Actual model DAX and CSV checks reconciled sales £10,004,320.474; 19,141 orders; AOV £522.6644623583; 4,297 known customers; 2,759 repeat customers; repeat rate 64.2075866884%; cancellations £688,890.46. Additional checks covered December 2010, UK/Australia filters, cohort size/M1, future-cell blanks, fixed-page filter scope and stock-code cross-filtering. See [validation status](powerbi/validation.json).
+
+AOV converts sales to DOUBLE before division to preserve ratio precision. Cohorts and StockSales remain disconnected fixed-window aggregates. Automatically generated hidden date tables remain in the Service model; visuals use explicit cohort dates, and disabling automatic date/time remains a cleanup item. It does not affect the verified measures.
+
+Publish to web exposes the underlying historical UCI-derived semantic model as well as the charts. Raw source files, local database credentials and institutional upload paths are not committed.
 
 ## Methodological limitations
 

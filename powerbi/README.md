@@ -2,7 +2,11 @@
 
 ## Status
 
-Power BI input tables, Power Query definitions, DAX measure definitions, a theme and a report layout are prepared. Exported metrics were reconciled in Python against the validated analysis. All eight Power Query definitions passed syntax checks using the Microsoft Power Query parser. Power Query and DAX have not been executed in Power BI. There is no completed PBIX/PBIP report or published Power BI dashboard yet.
+The three-page report was built, validated in Power BI Service and published on 16 October 2026. **[Open the public interactive report](https://app.powerbi.com/view?r=eyJrIjoiNmZlODc0YmEtOTZkNi00YjliLThlOGQtYjQxNjUyNjg5MTVhIiwidCI6ImY2Yjg5MjUzLWNmZjEtNGEyYS05YmM5LWEzZjI3ZWU5MjNiMSIsImMiOjh9)**. No sign-in is required. No PBIX/PBIP export is included.
+
+The Service model uses uploaded CSVs with en-GB parsing for monetary fields and text identifiers. DimMonth and DimCountry were derived from FactOrders and checked against the prepared dimension CSVs. The local-folder queries below remain Desktop reproduction templates, not exact deployed cloud source paths. Hidden automatic date tables remain; cohort visuals use explicit dates, and model cleanup is still recommended.
+
+Baseline and filter checks passed against actual model DAX and CSVs, including full-precision AOV, December 2010/UK/Australia filters, December cohort size/M1, future blanks and stock-code cross-filtering. See [validation.json](validation.json).
 
 ## Build the report
 
@@ -46,6 +50,6 @@ With all overview slicers cleared, compare the measures against `validation.json
 
 For December 2010, check 1,559 orders and GBP 821,452.73 sales. For the United Kingdom, check GBP 8,410,124.354 sales. For the December 2010 cohort, check size 885 and month-one retention 324/885. Clear and change slicers to verify dynamic rates and cancellation filtering. Check future cohort cells remain blank and stock-code invoice counts are not added together.
 
-Only after these checks and visual review should the report be labelled completed, exported as PBIX/PBIP and added to the portfolio with genuine Power BI screenshots.
+Acceptance checks and visual review were completed in Power BI Service. The root README includes the public link and a genuine screenshot. No PBIX/PBIP export has been produced.
 
 Data source: Chen, D. (2015). Online Retail. UCI Machine Learning Repository. DOI: 10.24432/C5BW33. CC BY 4.0. CSV tables are derived from this source under the project eligibility rules.

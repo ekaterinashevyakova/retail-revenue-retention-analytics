@@ -7,10 +7,10 @@
   "identifiable_customers": 4297,
   "repeat_customers": 2759,
   "repeat_purchase_rate": 0.6420758668838724,
-  "power_query_executed": false,
-  "dax_executed": false,
-  "powerbi_report_created": false,
-  "validation": "Exported table metrics reconciled in Python. Power Query, DAX and report rendering require verification in Power BI.",
+  "power_query_executed": true,
+  "dax_executed": true,
+  "powerbi_report_created": true,
+  "validation": "Prepared CSVs reconciled with actual Power BI Service model DAX. Baseline, filters, cohort blanks, fixed-page scope and stock-code interactions verified.",
   "export_validation_checks": [
     "Baseline summary equality",
     "Monthly sales equality",
@@ -53,5 +53,28 @@
       "file": "StockSales.pq",
       "status": "syntax passed"
     }
-  ]
+  ],
+  "powerbi_report_published": true,
+  "validated_at": "2026-10-16",
+  "public_report_url": "https://app.powerbi.com/view?r=eyJrIjoiNmZlODc0YmEtOTZkNi00YjliLThlOGQtYjQxNjUyNjg5MTVhIiwidCI6ImY2Yjg5MjUzLWNmZjEtNGEyYS05YmM5LWEzZjI3ZWU5MjNiMSIsImMiOjh9",
+  "pbix_pbip_exported": false,
+  "automatic_date_time_disabled": false,
+  "service_implementation_notes": [
+    "Cloud-upload queries parse monetary columns with en-GB locale and preserve text identifiers.",
+    "Dimensions derived from FactOrders reconcile with the prepared dimension CSVs.",
+    "AOV converts sales to DOUBLE before division.",
+    "Hidden automatic date tables remain; report visuals use explicit cohort dates."
+  ],
+  "powerbi_acceptance_checks": {
+    "baseline": "passed",
+    "december_2010": "sales 821452.73; orders 1559; AOV 526.91; repeat 29.72%; cancellations 74729.12",
+    "uk_dimension_sales": "8410124.354",
+    "australia_slicer": "sales 138453.81; orders 57; AOV 2429.01; repeat 100%; cancellations 1444.04",
+    "december_cohort": "size 885; M1 324/885 = 36.61%",
+    "future_cohort_cells": "blank",
+    "matrix_totals": "disabled",
+    "stock_orders_total": "disabled; counts must not be summed",
+    "stock_cross_filter": "DOT leaves one detail row: sales 186376.08; units 690; orders 690",
+    "fixed_page_scope": "overview country selection does not change Retention or Stock Code Contribution"
+  }
 }
